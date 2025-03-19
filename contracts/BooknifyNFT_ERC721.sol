@@ -20,4 +20,9 @@ contract BooknifyNFT is ERC721, Ownable {
     function setBaseURI(string memory _baseURI) public onlyOwner {
         baseURI = _baseURI;
     }
+
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        require(_exists(tokenId), "Token does not exist");
+        return string(abi.encodePacked(baseURI));
+    }
 }
